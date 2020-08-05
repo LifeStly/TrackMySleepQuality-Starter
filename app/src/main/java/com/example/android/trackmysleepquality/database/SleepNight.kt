@@ -16,7 +16,10 @@
 
 package com.example.android.trackmysleepquality.database
 
+import androidx.room.PrimaryKey
+
 data class SleepNight(
+        @PrimaryKey(autoGenerate = true)
         var nightId: Long = 0L,
         val startTimeMilli: Long = System.currentTimeMillis(),
         var endTimeMilli: Long = startTimeMilli,
