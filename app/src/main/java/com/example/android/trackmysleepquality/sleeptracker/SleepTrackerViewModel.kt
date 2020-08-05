@@ -17,18 +17,21 @@
 package com.example.android.trackmysleepquality.sleeptracker
 
 import android.app.Application
-import android.provider.SyncStateContract.Helpers.insert
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
-import kotlinx.coroutines.*
+import com.example.android.trackmysleepquality.formatNights
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * ViewModel for SleepTrackerFragment.
  */
-
 class SleepTrackerViewModel(
         val database: SleepDatabaseDao,
         application: Application) : AndroidViewModel(application) {
@@ -114,5 +117,4 @@ class SleepTrackerViewModel(
         viewModelJob.cancel()
     }
 }
-
 
