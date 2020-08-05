@@ -19,10 +19,9 @@ package com.example.android.trackmysleepquality.sleepquality
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 
 class SleepQualityViewModel(
         private val sleepNightKey: Long = 0L,
@@ -41,5 +40,30 @@ class SleepQualityViewModel(
 
     fun doneNavigating() {
         _navigateToSleepTracker.value = null
+    }
+    fun onSetSleepQuality(quality: Int) {
+        uiScope.launch {
+            // IO is a thread pool for running operations that access the disk, such as
+            // our Room database.
+            withContext(Dispatchers.IO) {
+                val tonight = database.get(sleepNightKey) ?: return@withContext
+                tonight.sleepQuality = quality
+                database.update(tonight)
+            }
+
+            // Setting this state variable to true will alert the observer and trigger navigation.
+            _navigateToSleepTracker.value = true
+        }
+    }
+    class SleepQualityViewModelFactory(
+            private val sleepNightKey: Long,
+            private val dataSource: SleepDatabaseDao) : ViewModelProvider.Factory {
+        @Suppress("unchecked_cast")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(SleepQualityViewModel::class.java)) {
+                return SleepQualityViewModel(sleepNightKey, dataSource) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
     }
 }
