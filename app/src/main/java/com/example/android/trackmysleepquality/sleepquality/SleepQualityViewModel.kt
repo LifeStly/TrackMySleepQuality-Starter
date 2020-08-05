@@ -23,21 +23,26 @@ import kotlinx.coroutines.*
 class SleepQualityViewModel(
         private val sleepNightKey: Long = 0L,
         val database: SleepDatabaseDao) : ViewModel() {
+
     private val viewModelJob = Job()
+
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
     private val _navigateToSleepTracker = MutableLiveData<Boolean?>()
 
     val navigateToSleepTracker: LiveData<Boolean?>
         get() = _navigateToSleepTracker
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
+    
     fun doneNavigating() {
         _navigateToSleepTracker.value = null
     }
+
     fun onSetSleepQuality(quality: Int) {
         uiScope.launch {
             // IO is a thread pool for running operations that access the disk, such as
@@ -51,25 +56,5 @@ class SleepQualityViewModel(
             // Setting this state variable to true will alert the observer and trigger navigation.
             _navigateToSleepTracker.value = true
         }
-    }
-    class SleepQualityViewModelFactory(
-            private val sleepNightKey: Long,
-            private val dataSource: SleepDatabaseDao) : ViewModelProvider.Factory {
-        @Suppress("unchecked_cast")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(SleepQualityViewModel::class.java)) {
-                return SleepQualityViewModel(sleepNightKey, dataSource) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
-    val startButtonVisible = Transformations.map(tonight) {
-        it == null
-    }
-    val stopButtonVisible = Transformations.map(tonight) {
-        it != null
-    }
-    val clearButtonVisible = Transformations.map(nights) {
-        it?.isNotEmpty()
     }
 }

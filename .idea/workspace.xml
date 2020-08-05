@@ -6,7 +6,10 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8779d30-7175-4b3e-95e7-40ac4c7d69a1" name="Default Changelist" comment="" />
+    <list default="true" id="c8779d30-7175-4b3e-95e7-40ac4c7d69a1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/trackmysleepquality/sleepquality/SleepQualityFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/trackmysleepquality/sleepquality/SleepQualityFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/trackmysleepquality/sleepquality/SleepQualityViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/trackmysleepquality/sleepquality/SleepQualityViewModel.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +44,11 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="com.example.android.trackmysleepquality.sleepquality" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -116,6 +124,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="406" y="139" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1596601053597">
+      <screen x="0" y="0" width="1360" height="728" />
+    </state>
+    <state x="406" y="139" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1360.728@0.0.1360.728" timestamp="1596601053597" />
     <state x="260" y="120" key="AndroidCreateResourceDirectoryDialog" timestamp="1596596367461">
       <screen x="0" y="0" width="1360" height="728" />
     </state>
