@@ -55,6 +55,9 @@ class SleepTrackerViewModel(
             night
         }
     }
+    fun onStartTracking() {
+        uiScope.launch {}
+    }
 
 }
 
